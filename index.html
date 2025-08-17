@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>DPS Motivation ✨</title>
+
+  <!-- Fonts & Icons (kept) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <!-- html2canvas for screenshot (kept) -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <style>
+    /* ====== Original CSS (UNTOUCHED) ====== */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;display:grid;place-items:center;
+      background:linear-gradient(120deg,#ff9a9e,#ffd1ff,#a18cd1,#fbc2eb);
+      background-size:400% 400%;animation:bgShift 12s ease infinite;
+      overflow-x:hidden;
+      padding:72px 12px calc(90px + env(safe-area-inset-bottom,16px));
+    }
+    @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    .welcome-message{position:fixed;top:10px;left:50%;transform:translateX(-50%);font-weight:800;font-size:20px;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.4);z-index:20;}
+    .Twist{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:12px;color:#fff;opacity:.9;z-index:10;}
+
+    .container{width:min(92vw,560px);background:rgba(255,255,255,.15);backdrop-filter:blur(16px);border-radius:20px;padding:20px;text-align:center;box-shadow:0 8px 25px rgba(0,0,0,.25);z-index:5;}
+
+    .header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+    .brand-chip{background:rgba(0,0,0,.4);padding:6px 12px;border-radius:12px;color:#fff;font-weight:600;display:flex;align-items:center;gap:6px;}
+
+    .fire-icon{width:100px;height:100px;margin:12px auto;border-radius:50%;background:url('https://imagizer.imageshack.com/img922/3721/2GUqCq.jpg')center/cover no-repeat;cursor:pointer;box-shadow:0 0 25px rgba(255,120,0,.5);}
+    .quote-box{color:#fff;font-size:20px;font-weight:700;min-height:56px;margin-bottom:6px;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+    .author{color:#eee;font-size:14px;}
+    .quote-counter{color:#ddd;font-size:12px;margin-top:4px;}
+    .progress-container{width:100%;height:12px;background:rgba(255,255,255,.3);border-radius:12px;margin-top:10px;}
+    .progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#ff6a00,#ff0000);transition:width .4s;}
+
+    .btn{padding:8px 12px;border:none;border-radius:10px;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px;}
+    .btn.primary{background:linear-gradient(90deg,#ff6a00,#ff0000);color:#fff;}
+    .btn.dark{background:#111;color:#fff;}
+
+    /* FAB menu */
+    .fab{position:fixed;right:14px;bottom:20px;width:56px;height:56px;border-radius:50%;background:#111;display:grid;place-items:center;color:#fff;z-index:50;cursor:pointer;}
+    .fab-menu{position:fixed;right:16px;bottom:90px;display:grid;gap:10px;transform:scale(0);transform-origin:bottom right;transition:.2s;z-index:49;}
+    .fab.open + .fab-menu{transform:scale(1);}
+    .fab-item{background:rgba(0,0,0,.6);color:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;}
+
+    /* Notifications */
+    .message-feed{position:fixed;left:8px;top:70px;width:200px;display:flex;flex-direction:column;gap:8px;z-index:30;pointer-events:none;}
+    .bubble{background:#111c;color:#fff;padding:8px 10px;border-radius:12px;font-size:12px;opacity:0;transform:translateX(-120%);animation:slideIn 12s linear infinite;}
+    @keyframes slideIn{0%{opacity:0;transform:translateX(-120%);}10%{opacity:1;transform:translateX(0);}80%{opacity:1;transform:translateX(0);}100%{opacity:0;transform:translateX(-120%);}}
+
+    /* Stickers */
+    .sticker{position:fixed;z-index:1;pointer-events:none;animation:wobble 4s ease-in-out infinite;}
+    @keyframes wobble{0%,100%{transform:rotate(-3deg);}50%{transform:rotate(3deg);}}
+
+    /* Fireballs */
+    .fireball{position:fixed;top:-20px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,#ffa500 30%,#f00 70%);animation:fall 1.2s linear forwards;z-index:40;}
+    @keyframes fall{to{transform:translateY(110vh);} }
+
+    /* Chaos mode */
+    .chaos .container{animation:rgbWiggle 1.6s linear infinite;}
+    @keyframes rgbWiggle{0%{filter:hue-rotate(0deg);}50%{filter:hue-rotate(120deg);}100%{filter:hue-rotate(0deg);}}
+    .emoji{position:fixed;font-size:28px;animation:drop 2s linear forwards;z-index:40;}
+    @keyframes drop{from{transform:translateY(-10vh);}to{transform:translateY(110vh);} }
+
+    /* ====== ADD-ONS (non-breaking enhancements) ====== */
+    :root{
+      --glass-bg: rgba(255,255,255,.15);
+      --chip-bg: rgba(0,0,0,.4);
+      --text-strong: #fff;
+      --text-soft: #ddd;
+    }
+    body.theme-dark{
+      background: radial-gradient(1200px 600px at 10% 0%, #0d0d12, #1a1a23 40%, #2a1f33 70%, #120f1b 100%);
+      animation: none;
+    }
+    .welcome-message{
+      background: linear-gradient(90deg,#fff,#ffe6b3,#ffd1ff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: none;
+    }
+    .container{
+      will-change: transform, filter;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .container:hover{ transform: translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.28); }
+    .btn.primary:hover{ filter: brightness(1.05); }
+    .btn.dark:hover{ box-shadow:0 0 0 2px rgba(255,255,255,.1) inset; }
+
+    /* Inline chip for counters */
+    .inline-chip{
+      display:inline-flex;align-items:center;gap:6px;
+      background:rgba(0,0,0,.35);padding:2px 8px;border-radius:999px;font-size:11px;color:#fff;margin-left:6px;
+    }
+
+    /* Mini controls inside FAB menu */
+    .fab-panel{ background:rgba(0,0,0,.75); color:#fff; padding:10px 12px; border-radius:12px; width: 220px; }
+    .fab-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:8px; }
+    .fab-row button{ flex:0 0 auto; }
+    .fab-row input[type="range"]{ width:120px; }
+
+    /* Confetti canvas */
+    #confettiCanvas{ position:fixed; inset:0; pointer-events:none; z-index:45; }
+
+    /* Tooltip */
+    .hint{
+      position:fixed; bottom:95px; left:50%; transform:translateX(-50%);
+      background:#111; color:#fff; padding:8px 12px; border-radius:10px; font-size:12px; opacity:.9; z-index:60;
+      display:none;
+    }
+    .hint.show{ display:block; }
+
+  </style>
+
+  <!-- ====== APPEND-ONLY: Mobile & UX fixes (no deletions to original) ====== -->
+  <style id="mobile-fixes">
+    /* Make layout rock-solid on phones without touching original rules */
+    :root{ --safe-bot: max(16px, env(safe-area-inset-bottom)); }
+
+    @media (max-width: 420px){
+      body{ padding-top: 96px; padding-left: 10px; padding-right: 10px; padding-bottom: calc(110px + var(--safe-bot)); }
+      .welcome-message{ font-size:16px; top:8px; max-width: 92vw; text-align:center; }
+      .message-feed{ top: 110px; width: 70vw; }
+      .container{ width: 100%; padding:16px; border-radius:16px; }
+      .header-row{ flex-wrap: wrap; gap:8px; }
+      .brand-chip{ font-size:12px; padding:5px 10px; }
+      .btn{ padding:7px 10px; font-size:12px; }
+      .fire-icon{ width:84px; height:84px; }
+      .quote-box{ font-size:18px; min-height:52px; }
+      .author{ font-size:12px; }
+      .quote-counter{ font-size:11px; }
+      .Twist{ bottom: calc(74px + var(--safe-bot)); font-size:11px; }
+      .fab{ right: 12px; bottom: calc(12px + var(--safe-bot)); width:56px; height:56px; }
+      .fab-menu{ right: 14px; bottom: calc(82px + var(--safe-bot)); }
+      #confettiCanvas{ inset: 0 0 calc(56px + var(--safe-bot)) 0; }
+    }
+
+    /* Ultra-compact devices */
+    @media (max-width: 340px){
+      .welcome-message{ font-size:14px; }
+      .brand-chip{ font-size:11px; }
+      .quote-box{ font-size:16px; }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      body{ animation: none !important; }
+      .emoji, .sticker, .bubble, .fireball{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="welcome-message">Welcome to DPS Motivation ✨</div>
+
+  <!-- Left notification feed (kept) -->
+  <div class="message-feed" id="message-feed"></div>
+
+  <!-- Central Card (kept) -->
+  <div class="container" id="container">
+    <div class="header-row">
+      <div class="brand-chip"><i class="fa-solid fa-bolt"></i> DPS Mood Booster</div> 
+      <div>
+        <!-- existing buttons (kept) -->
+        <button class="btn dark" id="chaosBtn"><i class="fa-solid fa-wand-magic-sparkles"></i> Chaos</button>
+        <button class="btn primary" id="shareBtn"><i class="fa-solid fa-share-nodes"></i> Share</button>
+        <!-- ADD: Random Quote button (non-breaking) -->
+        <button class="btn primary" id="randomBtn" title="Random Quote"><i class="fa-solid fa-shuffle"></i></button>
+      </div>
+    </div>
+    <div class="fire-icon" id="fire-icon"></div>
+    <div class="quote-box" id="quote-box">Jitna Dabaoge Utna Motivation!</div>
+    <div class="author" id="author-box"></div>
+    <div class="quote-counter" id="quote-counter"></div>
+    <div class="progress-container"><div class="progress-bar" id="progress-bar"></div></div>
+  </div>
+
+  <div class="Twist">Aakhir mei Twist xDD?</div>
+
+  <!-- Confetti canvas (added) -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Floating FAB (kept) -->
+  <div class="fab" id="fab"><i class="fa-solid fa-plus"></i></div>
+  <div class="fab-menu" id="fabMenu">
+    <!-- existing links (kept) -->
+    <a class="fab-item" href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Insta</a>
+    <a class="fab-item" href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <a class="fab-item" href="mailto:iamsanidhya.720@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+    <a class="fab-item" href="https://icecreamblog.tiiny.site" target="_blank"><i class="fas fa-blog"></i> Blog</a>
+    <a class="fab-item" href="https://noobda.com" target="_blank"><i class="fas fa-school"></i> School</a>
+
+    <!-- ADD: Music, Theme, and Quick Controls (non-link panel) -->
+    <div class="fab-panel" id="fabPanel">
+      <div class="fab-row" style="margin-top:0;">
+        <strong>Controls</strong>
+        <button class="btn dark" id="themeToggle" title="Toggle Theme">
+          <i class="fa-solid fa-circle-half-stroke"></i>
+        </button>
+      </div>
+
+      <div class="fab-row">
+        <span><i class="fa-solid fa-music"></i> Music</span>
+        <button class="btn primary" id="musicToggle" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+      </div>
+      <div class="fab-row">
+        <span>Volume</span>
+        <input type="range" id="musicVolume" min="0" max="1" step="0.01" value="0.35">
+      </div>
+
+      <div class="fab-row">
+        <span>Streak</span>
+        <span class="inline-chip"><i class="fa-solid fa-fire"></i> <span id="streakNow">0</span> | Best <span id="streakBest">0</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Music (added). Keep the .mp3 next to this HTML -->
+  <audio id="bgm" preload="auto" loop src="Cotneus - Cute Meow (Miaw Miaw Miaw Sad Song) (Lyrics) - Justified Melody.mp3"></audio>
+
+  <!-- Small hint for unmute -->
+  <div class="hint" id="soundHint">Tap anywhere to unmute music 🎵</div>
+
+  <script>
+    /* ====== Original JS (UNTOUCHED) ====== */
+    const quotes=[{text:"Padhai Toh Hoti Rahi Rahegi, Majee kr loo.",author:"AMEYA K"},
+      {text:"Mein toh khanne mei bss dhoke khaee hei.",author:"SWARAJ WG"},
+      {text:"Mein toh bss Bandi see baat karta thaa.",author:"VENU MW"},
+      {text:"Mein toh Apni marzi ki malik huu.",author:"NIRJALA MO"},
+      {text:"Delulu mein bitaa rhi hu zindagi",author:"ADRIKA GP"},
+      {text:"Meri Mmi School mei kaam karti hei.",author:"RADHIKA BN"},
+      {text:"IDK about marks, but I can draw your future.",author:"NAVNI BJ"},
+      {text:"Advice lekar bhi, galat decision leti hu.",author:"NIHIRA J"},
+      {text:"mere pass toh caste certificate hai tum tumhara dekh lo.",author:"MANAS GJ"},
+      {text:"mere pass toh sports quota hei.",author:"ANKUR AT"},
+      {text:"Padhai nhi, Football khelne Challoo",author:"SHARVIN KL"},
+      {text:"Ek Jaegi Dusri Aegi, meri walli meri mmi laegi.",author:"THE MOST FAMOUS SANIDHYA"}];
+
+    let current=0;
+    const fire=document.getElementById('fire-icon');
+    const quoteBox=document.getElementById('quote-box');
+    const authorBox=document.getElementById('author-box');
+    const counter=document.getElementById('quote-counter');
+    const progress=document.getElementById('progress-bar');
+    counter.textContent=`0 / ${quotes.length}`;
+
+    fire.addEventListener('click',()=>{if(current<quotes.length){
+        let q=quotes[current];quoteBox.textContent=q.text;authorBox.textContent='- '+q.author;
+        current++;progress.style.width=(current/quotes.length)*100+'%';counter.textContent=`${current} / ${quotes.length}`;
+        // ADD: update streak on sequential reveal too
+        updateStreak();
+      } else {quoteBox.textContent="All quotes done!";authorBox.textContent="";}});
+
+    // FAB toggle (kept)
+    const fab=document.getElementById('fab'),fabMenu=document.getElementById('fabMenu');
+    fab.addEventListener('click',()=>{fab.classList.toggle('open');fab.querySelector('i').className=fab.classList.contains('open')?'fa-solid fa-xmark':'fa-solid fa-plus';});
+
+    // Share full page screenshot (kept)
+    const shareBtn=document.getElementById('shareBtn');
+    shareBtn.addEventListener('click',()=>{
+      html2canvas(document.body,{backgroundColor:null,scale:2,useCORS:true}).then(async canvas=>{
+        const dataUrl=canvas.toDataURL('image/png');
+        if(navigator.canShare){try{
+            const blob=await (await fetch(dataUrl)).blob();
+            const file=new File([blob],'dps-motivation.png',{type:'image/png'});
+            await navigator.share({title:'DPS Motivation',text:'Gen-Z Motivation ✨',files:[file]});
+            return;
+        }catch(e){}}
+        const a=document.createElement('a');a.href=dataUrl;a.download='dps-motivation.png';a.click();
+        alert('Full page screenshot saved! ✨');
+      });
+    });
+
+    // Messages feed (kept)
+    const feed=document.getElementById('message-feed');
+    const msgs=["Aarav: Homework done ✅","Diya: 5km run complete 🏃‍♀️","Kabir: Maths mock test aced 💯","Meera: Cleaned my desk 🧽","Riya: Read 20 pages 📖","Ishaan: Meditation 10 mins 🧘","Zoya: No phone till 9pm 🚫📱"];
+    let msgIndex=0;setInterval(()=>{const b=document.createElement('div');b.className='bubble';b.textContent=msgs[msgIndex%msgs.length];feed.appendChild(b);setTimeout(()=>b.remove(),12000);msgIndex++;},2000);
+
+    // Honk sound + fireballs (kept)
+    let audioCtx=null;
+    function honk(){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+      const osc=audioCtx.createOscillator(),g=audioCtx.createGain();
+      osc.type='square';osc.frequency.value=200;g.gain.value=0.1;osc.connect(g);g.connect(audioCtx.destination);
+      osc.start();osc.stop(audioCtx.currentTime+0.2);}
+    function fireball(x){const f=document.createElement('div');f.className='fireball';f.style.left=(x||Math.random()*innerWidth)+'px';document.body.appendChild(f);setTimeout(()=>f.remove(),1200);}    
+    document.addEventListener('click',e=>{honk();for(let i=0;i<3;i++){setTimeout(()=>fireball(e.clientX+(Math.random()*40-20)),i*80);}});
+
+    // Chaos mode (kept) + ADD: confetti when enabling
+    const chaosBtn=document.getElementById('chaosBtn');let chaos=false;let chaosInterval=null;
+    chaosBtn.addEventListener('click',()=>{chaos=!chaos;document.body.classList.toggle('chaos',chaos);
+      if(chaos){
+        chaosInterval=setInterval(()=>{const e=document.createElement('div');e.className='emoji';e.textContent=["🔥","💥","🤪","💀","📈","✨"][Math.floor(Math.random()*6)];e.style.left=Math.random()*100+'vw';document.body.appendChild(e);setTimeout(()=>e.remove(),2000);},1500);
+        confettiBurst(); // ADD
+      }
+      else{clearInterval(chaosInterval);}    
+    });
+
+    /* ====== ADD-ONS JS (no breaking changes) ====== */
+
+    // --- Random Quote button ---
+    const randomBtn = document.getElementById('randomBtn');
+    randomBtn.addEventListener('click', ()=>{
+      const idx = Math.floor(Math.random() * quotes.length);
+      const q = quotes[idx];
+      quoteBox.textContent = q.text; authorBox.textContent = '- ' + q.author;
+      // progress stays tied to sequential flow; this is just for fun
+      updateStreak();
+    });
+
+    // --- Streak counter (session + best in localStorage) ---
+    const streakNowEl = document.getElementById('streakNow');
+    const streakBestEl = document.getElementById('streakBest');
+    let streakNow = 0;
+    let streakBest = Number(localStorage.getItem('dps_streak_best')||0);
+    streakBestEl.textContent = streakBest;
+    function updateStreak(){
+      streakNow++;
+      streakNowEl.textContent = streakNow;
+      if(streakNow > streakBest){ streakBest = streakNow; streakBestEl.textContent = streakBest; localStorage.setItem('dps_streak_best', String(streakBest)); }
+      // Show inline chip on the main counter (non-destructive)
+      const qc = document.getElementById('quote-counter');
+      if(!document.getElementById('chipInline')){
+        const chip=document.createElement('span'); chip.id='chipInline'; chip.className='inline-chip';
+        chip.innerHTML='<i class="fa-solid fa-fire"></i> '+streakNow+' | Best '+streakBest;
+        qc.appendChild(chip);
+      } else {
+        document.getElementById('chipInline').innerHTML='<i class="fa-solid fa-fire"></i> '+streakNow+' | Best '+streakBest;
+      }
+    }
+
+    // --- Theme toggle (dark/light) ---
+    const themeToggle = document.getElementById('themeToggle');
+    (function initTheme(){
+      const saved = localStorage.getItem('dps_theme') || 'light';
+      if(saved==='dark'){ document.body.classList.add('theme-dark'); }
+    })();
+    themeToggle.addEventListener('click', ()=>{
+      document.body.classList.toggle('theme-dark');
+      localStorage.setItem('dps_theme', document.body.classList.contains('theme-dark') ? 'dark' : 'light');
+    });
+
+    // --- Background Music (autoplay loop with user-friendly controls) ---
+    const bgm = document.getElementById('bgm');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicVolume = document.getElementById('musicVolume');
+    const soundHint = document.getElementById('soundHint');
+
+    // Start muted to satisfy autoplay policies
+    bgm.volume = parseFloat(localStorage.getItem('dps_bgm_vol') || musicVolume.value || '0.35');
+    musicVolume.value = bgm.volume.toString();
+    bgm.muted = true;
+    // Try autoplay (muted)
+    bgm.play().catch(()=>{ /* ignored: will play after gesture */ });
+    soundHint.classList.add('show');
+
+    // Unmute & ensure play on first user gesture
+    function unlockSound(){
+      bgm.muted = false;
+      bgm.play().catch(()=>{ /* some browsers need second gesture */ });
+      soundHint.classList.remove('show');
+      window.removeEventListener('pointerdown', unlockSound);
+      window.removeEventListener('keydown', unlockSound);
+    }
+    window.addEventListener('pointerdown', unlockSound, { once:true });
+    window.addEventListener('keydown', unlockSound, { once:true });
+
+    // Play/Pause button
+    function updateMusicIcon(){
+      musicToggle.innerHTML = bgm.paused ? '<i class="fa-solid fa-play"></i>' : '<i class="fa-solid fa-pause"></i>';
+    }
+    musicToggle.addEventListener('click', async ()=>{
+      if(bgm.paused){ bgm.muted=false; await bgm.play().catch(()=>{}); }
+      else { bgm.pause(); }
+      updateMusicIcon();
+    });
+    bgm.addEventListener('play', updateMusicIcon);
+    bgm.addEventListener('pause', updateMusicIcon);
+
+    // Volume
+    musicVolume.addEventListener('input', ()=>{
+      bgm.volume = parseFloat(musicVolume.value);
+      localStorage.setItem('dps_bgm_vol', bgm.volume.toString());
+    });
+
+    // --- Confetti (no external libs) ---
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const ctx = confettiCanvas.getContext('2d');
+    let confettiPieces = [];
+    function sizeCanvas(){
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    sizeCanvas(); window.addEventListener('resize', sizeCanvas);
+
+    function confettiBurst(){
+      const colors = ['#FFD166','#EF476F','#06D6A0','#118AB2','#8338EC','#FF006E'];
+      for(let i=0;i<150;i++){
+        confettiPieces.push({
+          x: Math.random()*confettiCanvas.width,
+          y: -10,
+          r: 2 + Math.random()*4,
+          c: colors[Math.floor(Math.random()*colors.length)],
+          s: 1 + Math.random()*3,
+          a: Math.random()*Math.PI*2,
+          v: Math.random()*2
+        });
+      }
+      animateConfetti();
+      setTimeout(()=>{ confettiPieces = []; }, 2000);
+    }
+    let confettiAnimating = false;
+    function animateConfetti(){
+      if(confettiAnimating) return;
+      confettiAnimating = true;
+      (function loop(){
+        ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+        confettiPieces.forEach(p=>{
+          p.y += p.s;
+          p.x += Math.sin(p.a) * 1.2;
+          p.a += 0.05;
+          ctx.beginPath();
+          ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          ctx.fillStyle = p.c;
+          ctx.fill();
+        });
+        if(confettiPieces.length){
+          requestAnimationFrame(loop);
+        } else {
+          confettiAnimating = false;
+        }
+      })();
+    }
+
+    // --- Tiny perf niceties ---
+    document.getElementById('container').style.willChange = 'transform, filter';
+  </script>
+
+  <!-- ====== APPEND-ONLY: Mobile scripting & click-to-replay music ====== -->
+  <script>
+    (function(){
+      // 1) Prevent overlay by ensuring enough top/bottom padding dynamically as sizes change
+      const wm = document.querySelector('.welcome-message');
+      const twist = document.querySelector('.Twist');
+      function applySafePadding(){
+        const wmRect = wm.getBoundingClientRect();
+        const twistRect = twist.getBoundingClientRect();
+        const topPad = Math.max(84, Math.ceil(wmRect.height) + 60);
+        const bottomPad = Math.max(90, Math.ceil(window.innerHeight - twistRect.top) + 24);
+        document.body.style.paddingTop = topPad + 'px';
+        document.body.style.paddingBottom = bottomPad + 'px';
+      }
+      window.addEventListener('resize', applySafePadding);
+      window.addEventListener('load', applySafePadding);
+      setTimeout(applySafePadding, 0);
+
+      // 2) Ensure the background music restarts on every page click (as requested)
+      const bgmEl = document.getElementById('bgm');
+      document.addEventListener('click', ()=>{
+        try{
+          if(bgmEl){ bgmEl.muted=false; bgmEl.currentTime = 0; bgmEl.play().catch(()=>{}); }
+        }catch(e){}
+      }, {passive:true});
+
+      // 3) Guard for extra-small devices
+      if(window.innerWidth < 360){
+        document.documentElement.classList.add('compact');
+      }
+    })();
+  </script>
+
+<script>
+  (function(){
+    const bgmEl = document.getElementById('bgm');
+
+    function startMusic() {
+      if (bgmEl) {
+        bgmEl.muted = false;
+        if (bgmEl.paused) {
+          bgmEl.play().catch(()=>{});
+        }
+      }
+    }
+
+    window.addEventListener('pointerdown', startMusic, { once: true });
+    window.addEventListener('keydown', startMusic, { once: true });
+  })();
+</script>
+
+</body>
+</html>
