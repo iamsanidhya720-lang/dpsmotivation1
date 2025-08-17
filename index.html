@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -279,7 +281,7 @@
 
     // Messages feed (kept)
     const feed=document.getElementById('message-feed');
-    const msgs=["Aarav: Homework done ✅","Diya: 5km run complete 🏃‍♀️","Kabir: Maths mock test aced 💯","Meera: Cleaned my desk 🧽","Riya: Read 20 pages 📖","Ishaan: Meditation 10 mins 🧘","Zoya: No phone till 9pm 🚫📱"];
+    const msgs=["Bhakti: Homework done ✅","Tanuja: 5km run complete 🏃‍♀️","Tanay: Maths mock test aced 💯","Amogh: Cleaned my desk 🧽","Riti: Read 20 pages 📖","Ishaan: Meditation 10 mins 🧘","Ishan: No phone till 9pm 🚫📱"];
     let msgIndex=0;setInterval(()=>{const b=document.createElement('div');b.className='bubble';b.textContent=msgs[msgIndex%msgs.length];feed.appendChild(b);setTimeout(()=>b.remove(),12000);msgIndex++;},2000);
 
     // Honk sound + fireballs (kept)
